@@ -1,0 +1,236 @@
+@import "bourbon"
+@import "sass/vars"
+@import "sass/base"
+
+//First screen styles
+/*Окно приветствия
+button::-moz-focus-inner
+  border: 0
+*
+  outline: 0 !important
+
+#preloader
+  display: block
+  position: fixed
+  z-index: 99999
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  min-width: 1000px
+  background: #000
+  background-size: 100px
+  display: flex
+  justify-content: center
+  align-items: center
+  .block
+    width: 70px
+    height: 57px
+    border: 2px solid transparent
+    &::before
+      animation: spin 1.3s infinite linear
+      content: ''
+      background: url(img/Preloader-face.png) no-repeat
+      display: block
+      width: 70px
+      height: 57px
+
+
+@keyframes spin
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+///////////////////////////////////////////////////////
+
+.displayNone
+  display: none
+.displayBlock
+  display: block
+.displayFlex
+  display: flex
+.colorBlack
+  color: #000
+.colorWhite
+  color: #fff
+.bgBlack
+  background-color: #000
+.bgWhite
+  background-color: #fff
+.cursorPointer
+  cursor: pointer
+.cursorDefault
+  cursor: default
+
+//////////////////////Main style///////////////////////
+#start_modal_window
+  width: 100%
+  height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  background-color: rgba(0, 0, 0, 0.95)
+  display: flex
+  z-index: 2
+  align-items: center
+  justify-content: space-around
+  transition: left 1.2s ease
+  .welcome
+    width: 70%
+    height: 70%
+    display: flex
+    justify-content: space-around
+    align-items: flex-end
+    flex-flow: column
+    background-image: url(img/face.png)
+    background-size: 430px auto
+    background-repeat: no-repeat
+    background-position: left
+    h1
+      color: #fff
+      font-size: 42px
+      font-family: 'Rubik Mono One', sans-serif
+    h3
+      text-align: center
+      color: #fff
+      flex-grow: 2
+      font-family: 'Comfortaa', cursive
+
+.continue #btn_continue
+  background-color: rgba(255, 255, 255, 0)
+  color: #fff
+  border: none
+  font-size: 38px
+  cursor: pointer
+  font-family: 'Rubik Mono One', sans-serif
+
+/*Конец окна приветствия
+/*Левый блок с сообщениями
+
+#wrapper
+  display: flex
+  flex-flow: row wrap
+  background-color: #000
+
+#left
+  width: 30%
+  height: 100vh
+  display: flex
+  flex-flow: column
+  text-align: center
+  position: relative
+  z-index: 0
+
+.btn_ready
+  display: flex
+  justify-content: center
+.message
+  h2
+    font-family: 'Comfortaa', cursive
+
+#ready
+  margin-top: 187px
+  border-radius: 100%
+  background-color: rgba(255, 255, 255, 0)
+  border: none
+  cursor: pointer
+  width: 45px
+  height: 45px
+
+#repeat
+  margin-top: 187px
+  border-radius: 100%
+  background-color: rgba(255, 255, 255, 0)
+  border: none
+  cursor: pointer
+  width: 45px
+  height: 45px
+
+#h2
+  text-align: center
+
+#img
+  position: absolute
+  top: 0
+  left: 41.7%
+  z-index: -1
+
+#img2
+  position: absolute
+  top: 0
+  left: 41.7%
+  z-index: -1
+#arrowUp
+  margin: 30px
+  font-size: 4vh
+  visibility: hidden
+/*Правый блок с колонками
+
+#right
+  background-image: url(img/Mexican.png)
+  background-repeat: no-repeat
+  background-size: 80% auto
+  background-color: #000
+  background-position: center
+  width: 70%
+  height: 100vh
+  position: relative
+  display: flex
+  justify-content: center
+  align-items: center
+
+#dontClick
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, 0)
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 1
+
+#rows
+  width: 630px
+  height: 91%
+  background-color: rgba(0, 0, 0, 0)
+  justify-content: space-between
+  position: relative
+
+#resultNumber
+  width: 100%
+  height: 100%
+  position: absolute
+  left: 0
+  top: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  h4
+    font-size: 150px
+    color: #fff
+
+#rows .row
+  background-color: rgba(0, 0, 0, 0)
+  width: 100px
+  color: #fff
+  position: relative
+  font-family: font2
+  text-align: center
+  transition: all 0.5s ease
+  &:hover
+    transform: scale(1.05, 1.05)
+  ul
+    li
+      list-style: none
+      z-index: 2
+      font-size: 2.7vh
+  button
+    background-color: #fff
+    cursor: pointer
+    width: 100%
+    position: absolute
+    top: 0
+    left: 0
+    border: none
+    height: 100%
+    background-color: rgba(0, 0, 0, 0)

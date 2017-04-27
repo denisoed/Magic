@@ -1,0 +1,29 @@
+{
+  "name": "denisoed",
+  "description": "OptimizedHTML - Start HTML Template",
+  "main": "index.js",
+  "authors": [
+    "WebDesign Master"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/libs/",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "^4.0.0-alpha.5",
+    "jquery": "^3.1.1",
+    "susy": "^2.2.12",
+    "breakpoint-sass": "^2.7.0",
+    "font-awesome": "^4.7.0",
+    "slick-carousel": "^1.6.0"
+  },
+  "dependencies": {
+    "animate.css": "^3.5.2"
+  }
+}
