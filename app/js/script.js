@@ -161,17 +161,17 @@ function numRandom(min, max) {
 */
 function rowIs(btn) {
   play('audio/clickRow.mp3');
-  getRow = +btn.getAttribute('id') + 2;
-  count2 = 0; //Обнуляем переменную чтобы в функцие replaceNum счетчик count2 при запуске был равен нулю.
-  shuffleTheRows(storeArrays[numberRow1], storeArrays[numberRow2]);//Перебрать ряды в соответствии со свойствами переменных numberRow.
+  getRow = Number(btn.getAttribute('id')) + 2;
+  count2 = 0; // Обнуляем переменную чтобы в функцие replaceNum счетчик count2 при запуске был равен нулю.
+  shuffleTheRows(storeArrays[numberRow1], storeArrays[numberRow2]);// Перебрать ряды в соответствии со свойствами переменных numberRow.
   numberRow1 += 1;
   numberRow2 += 1;
-  clear();//После того как выбрали ряд удаляем все числа
+  clear(); // После того как выбрали ряд удаляем все числа
 }
 
-//Очищает все числа в DOM дереве, для следующего вывода чисел
+// Очищает все числа в DOM дереве, для следующего вывода чисел
 function clear() {
-  var ull = rowsContainer.getElementsByTagName('ul');
+  const ull = rowsContainer.getElementsByTagName('ul');
   for (var i = 0; i < ull.length; i++) {
     ull[i].remove();
   }
@@ -190,7 +190,6 @@ function shuffleTheRows(fullArray, emptyArray) {
       replaceNum();
       emptyArray[getRemainder(remainder)][count4] = fullArray[getRemainder(getRow)][j];
       remainder += 1;
-      console.log(emptyArray[j]);
     }
 
     remainder = 0;
@@ -209,7 +208,6 @@ var h4Num;
 
 function result(e) {
   if (clickBtnRow == 3) {
-
     for (var i = 0; i < classRow.length; i++) {
       classRow[i].classList.add('displayNone');
     }
@@ -221,6 +219,7 @@ function result(e) {
     pasteText(h2, sayPhrase[1]);
     play('audio/Злойсмех.mp3');
     changeAttribute(lampImg2, 'removeAttribute', 'animated swing');
+    return clickBtnRow = 0;
   }
 
   return clickBtnRow += 1;
