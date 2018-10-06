@@ -1,4 +1,4 @@
-//Имеется три колонки, в которых по очередно присвоены цифры.
+// Имеется три колонки, в которых по очередно присвоены цифры.
 var defaultRows = [
   ['<i class="fa fa-bomb" aria-hidden="true"></i>',
   '<i class="fa fa-bluetooth" aria-hidden="true"></i>',
@@ -66,36 +66,36 @@ var defaultRows = [
   '<i class="fa fa-paw" aria-hidden="true"></i>',
   '<i class="fa fa-music" aria-hidden="true"></i>']//2
 ];
-//Пустой двумерный массив для перебора в определенном порядке массива defaultRows[];
+// Пустой двумерный массив для перебора в определенном порядке массива defaultRows[];
 var temporatyArray1 = [
-  [],//0
-  [],//1
-  []//2
+  [],
+  [],
+  []
 ];
-//Пустой двумерный массив для перебора в определенном порядке массива temporatyArray[];
+// Пустой двумерный массив для перебора в определенном порядке массива temporatyArray[];
 var temporatyArray2 = [
-  [],//0
-  [],//1
-  []//2
+  [],
+  [],
+  []
 ];
-//Пустой двумерный массив который хранит результативный набор чисел.
+// Пустой двумерный массив который хранит результативный набор чисел.
 var resultArray = [
-  [],//0
-  [],//1
-  []//2
+  [],
+  [],
+  []
 ];
 
-//Общее хранилище рабочих двумерных массивов, предназначено для обращения к ним по индексу
+// Общее хранилище рабочих двумерных массивов, предназначено для обращения к ним по индексу
 var storeArrays = [defaultRows, temporatyArray1, temporatyArray2, resultArray];
 
 // Необходимые переменные
-var remainder = 0,//Счетчик для функции getRemainder();
-    count2 = 0,//Счетчик для функции replaceNum(); Требуется обнуление
-    getRow = 0,//В этой переменной хранится определенный ряд массива defaultRows[];
-    count4 = 0,//Переменная для функции replaceNum();
-    clickBtnRow = 0,//Считает нажатие по кнопке выбора ряда
-    numberRow1 = 0,//Счетчики для перебора массива storeArrays[];
-    numberRow2 = 1;//
+let remainder = 0, // Счетчик для функции getRemainder();
+    count2 = 0, // Счетчик для функции replaceNum(); Требуется обнуление
+    getRow = 0, // В этой переменной хранится определенный ряд массива defaultRows[];
+    count4 = 0, // Переменная для функции replaceNum();
+    clickBtnRow = 0, // Считает нажатие по кнопке выбора ряда
+    numberRow1 = 0, // Счетчики для перебора массива storeArrays[];
+    numberRow2 = 1; //
 
 /*
 Эта  функция обрабатывается в цикле и возвращает
@@ -197,7 +197,7 @@ function shuffleTheRows(fullArray, emptyArray) {
     getRow += 1;
   }
 
-  showNumbers(emptyArray);//Вывод на экран после перебора
+  showNumbers(emptyArray); // Вывод на экран после перебора
 }
 
 //4).Вывод загаданого числа
@@ -342,7 +342,7 @@ function rN(min, max) {
   return rundomNumber;
 }
 
-//Cоздаёт один родительский элемент с одним дочерним элементом
+// Cоздаёт один родительский элемент с одним дочерним элементом
 function createNode(variable1, node1, classs, attribute, variable2, node2, text, DomNode) {
   variable1 = document.createElement(node1);
   variable1.setAttribute(classs, attribute);
