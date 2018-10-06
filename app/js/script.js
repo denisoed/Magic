@@ -119,21 +119,20 @@ function replaceNum() {
   count2 += 1;
 }
 
-/*1).SHOWARRAY
-Выводим все свойства массива defaultRows[]; в DOM дерево
+/*1).РАССТАНОВЩИК
+Выводим все свойства массива defaultRows[]; в DOM дерево, в рандомном порядке, в три колонки
 */
-var rowsContainer = document.getElementById('rows');
-var classRow = rowsContainer.getElementsByClassName('row');
-
+const rowsContainer = document.getElementById('rows');
+const classRow = rowsContainer.getElementsByClassName('row');
 
 function showNumbers(array) {
-  for (var i = 0; i < 3; i++) {
+  const arr = numRandom(0,20);
 
-    numRandom(0,20);
-    var ul = document.createElement('ul');
+  for (let i = 0; i < 3; i++) {
+    let ul = document.createElement('ul');
 
-    for (var j = 0; j < array[i].length; j++) {
-      var li = document.createElement('li');
+    for (let j = 0; j < array[i].length; j++) {
+      let li = document.createElement('li');
       li.innerHTML = array[i][arr[j]];
       ul.appendChild(li);
     }
@@ -141,25 +140,25 @@ function showNumbers(array) {
     classRow[i].appendChild(ul);
   }
 }
-//Функция генерирует заданное количество рандомных чисел
+
+// Функция генерирует заданное количество рандомных чисел
 function numRandom(min, max) {
+  const arr = []; // записываем в этот массив рандомные, не повторяющиеся числа
+  let rundomNumber;
 
-  var rundomnumber;//случайное число
+  while(arr.length <= max) {
+    rundomNumber = Math.floor( Math.random() * (max - min + 1) ) + min; // создадим случайное число
+    if (arr.indexOf(rundomNumber) == -1) { // проверим есть оно  у нас или нет
+      arr.push(rundomNumber);
+    }
+  }
 
-  while (arr.length <= max) {
-      rundomnumber = Math.floor( Math.random() * (max - min + 1) ) + min; //создадим случайное число
-      if (arr.indexOf(rundomnumber) == -1) {// проверим есть оно  у нас или нет
-          arr.push(rundomnumber);// записываем в массив т.к нету
-      }
-   }
-
+  return arr;
 }
-var arr = []//записываем в этот массив рандомные, не повторяющиеся числа
 
 /*2).ОПРЕДЕЛИТЕЛЬ
 Выбираем ряд в котором находится ваше загаданное число
 */
-
 function rowIs(btn) {
   play('audio/clickRow.mp3');
   getRow = +btn.getAttribute('id') + 2;
@@ -191,6 +190,7 @@ function shuffleTheRows(fullArray, emptyArray) {
       replaceNum();
       emptyArray[getRemainder(remainder)][count4] = fullArray[getRemainder(getRow)][j];
       remainder += 1;
+      console.log(emptyArray[j]);
     }
 
     remainder = 0;
