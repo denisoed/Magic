@@ -1,71 +1,74 @@
 // Имеется три колонки, в которых по очередно присвоены цифры.
-var defaultRows = [
-  ['<i class="fa fa-bomb" aria-hidden="true"></i>',
-  '<i class="fa fa-bluetooth" aria-hidden="true"></i>',
-  '<i class="fa fa-book" aria-hidden="true"></i>',
-  '<i class="fa fa-bullhorn" aria-hidden="true"></i>',
-  '<i class="fa fa-camera-retro" aria-hidden="true"></i>',
-  '<i class="fa fa-clock-o" aria-hidden="true"></i>',
-  '<i class="fa fa-coffee" aria-hidden="true"></i>',
-  '<i class="fa fa-cube" aria-hidden="true"></i>',
-  '<i class="fa fa-diamond" aria-hidden="true"></i>',
-  '<i class="fa fa-envelope" aria-hidden="true"></i>',
-  '<i class="fa fa-eye" aria-hidden="true"></i>',
-  '<i class="fa fa-flash" aria-hidden="true"></i>',
-  '<i class="fa fa-heart" aria-hidden="true"></i>',
-  '<i class="fa fa-hashtag" aria-hidden="true"></i>',
-  '<i class="fa fa-info" aria-hidden="true"></i>',
-  '<i class="fa fa-keyboard-o" aria-hidden="true"></i>',
-  '<i class="fa fa-legal" aria-hidden="true"></i>',
-  '<i class="fa fa-mortar-board" aria-hidden="true"></i>',
-  '<i class="fa fa-phone" aria-hidden="true"></i>',
-  '<i class="fa fa-registered" aria-hidden="true"></i>',
-  '<i class="fa fa-cloud" aria-hidden="true"></i>'],//0
+var data = [
+  'bomb',
+  'bluetooth',
+  'book',
+  'bullhorn',
+  'camera-retro',
+  'clock-o',
+  'coffee',
+  'cube',
+  'diamond',
+  'envelope',
+  'eye',
+  'flash',
+  'heart',
+  'hashtag',
+  'info',
+  'keyboard-o',
+  'legal',
+  'mortar-board',
+  'phone',
+  'registered',
+  'cloud',
 
-  ['<i class="fa fa-television" aria-hidden="true"></i>',
-  '<i class="fa fa-anchor" aria-hidden="true"></i>',
-  '<i class="fa fa-truck" aria-hidden="true"></i>',
-  '<i class="fa fa-video-camera" aria-hidden="true"></i>',
-  '<i class="fa fa-wifi" aria-hidden="true"></i>',
-  '<i class="fa fa-car" aria-hidden="true"></i>',
-  '<i class="fa fa-bell-o" aria-hidden="true"></i>',
-  '<i class="fa fa-binoculars" aria-hidden="true"></i>',
-  '<i class="fa fa-bug" aria-hidden="true"></i>',
-  '<i class="fa fa-circle-o" aria-hidden="true"></i>',
-  '<i class="fa fa-cog" aria-hidden="true"></i>',
-  '<i class="fa fa-compass" aria-hidden="true"></i>',
-  '<i class="fa fa-female" aria-hidden="true"></i>',
-  '<i class="fa fa-flag" aria-hidden="true"></i>',
-  '<i class="fa fa-flask" aria-hidden="true"></i>',
-  '<i class="fa fa-lemon-o" aria-hidden="true"></i>',
-  '<i class="fa fa-key" aria-hidden="true"></i>',
-  '<i class="fa fa-motorcycle" aria-hidden="true"></i>',
-  '<i class="fa fa-paper-plane" aria-hidden="true"></i>',
-  '<i class="fa fa-plane" aria-hidden="true"></i>',
-  '<i class="fa fa-soccer-ball-o" aria-hidden="true"></i>'],//1
+  'television',
+  'anchor',
+  'truck',
+  'video-camera',
+  'wifi',
+  'car',
+  'bell-o',
+  'binoculars',
+  'bug',
+  'circle-o',
+  'cog',
+  'compass',
+  'female',
+  'flag',
+  'flask',
+  'lemon-o',
+  'key',
+  'motorcycle',
+  'paper-plane',
+  'plane',
+  'soccer-ball-o',
 
-  ['<i class="fa fa-balance-scale" aria-hidden="true"></i>',
-  '<i class="fa fa-trophy" aria-hidden="true"></i>',
-  '<i class="fa fa-bus" aria-hidden="true"></i>',
-  '<i class="fa fa-check" aria-hidden="true"></i>',
-  '<i class="fa fa-close" aria-hidden="true"></i>',
-  '<i class="fa fa-copyright" aria-hidden="true"></i>',
-  '<i class="fa fa-cutlery" aria-hidden="true"></i>',
-  '<i class="fa fa-eyedropper" aria-hidden="true"></i>',
-  '<i class="fa fa-headphones" aria-hidden="true"></i>',
-  '<i class="fa fa-magnet" aria-hidden="true"></i>',
-  '<i class="fa fa-male" aria-hidden="true"></i>',
-  '<i class="fa fa-microphone" aria-hidden="true"></i>',
-  '<i class="fa fa-money" aria-hidden="true"></i>',
-  '<i class="fa fa-plug" aria-hidden="true"></i>',
-  '<i class="fa fa-puzzle-piece" aria-hidden="true"></i>',
-  '<i class="fa fa-shield" aria-hidden="true"></i>',
-  '<i class="fa fa-tree" aria-hidden="true"></i>',
-  '<i class="fa fa-unlock" aria-hidden="true"></i>',
-  '<i class="fa fa-rocket" aria-hidden="true"></i>',
-  '<i class="fa fa-paw" aria-hidden="true"></i>',
-  '<i class="fa fa-music" aria-hidden="true"></i>']//2
+  'balance-scale',
+  'trophy',
+  'bus',
+  'check',
+  'close',
+  'copyright',
+  'cutlery',
+  'eyedropper',
+  'headphones',
+  'magnet',
+  'male',
+  'microphone',
+  'money',
+  'plug',
+  'puzzle-piece',
+  'shield',
+  'tree',
+  'unlock',
+  'rocket',
+  'paw',
+  'music'
 ];
+
+var defaultRows = [];
+
 // Пустой двумерный массив для перебора в определенном порядке массива defaultRows[];
 var temporatyArray1 = [
   [],
@@ -118,6 +121,27 @@ function replaceNum() {
   count4 = Math.floor(count2/3);
   count2 += 1;
 }
+
+/*0).ИНИЦИАЛИЗАЦИЯ
+Подготовка данных. Формируем массив с тремя рандомными массивами 
+*/
+function init() {
+  const randomNumbers = numRandom(0, 62);
+
+  for (let i = 0; i < 3; i++) {
+    defaultRows.push([]);
+    for (let j = 0; j < 21; j++) {
+      defaultRows[i].push(createUnit(data[randomNumbers[j]]));
+    }
+    randomNumbers.splice(0, 21);
+  }
+}
+
+function createUnit(name) {
+  return `<i class="fa fa-${name}"></i>`;
+}
+
+init();
 
 /*1).РАССТАНОВЩИК
 Выводим все свойства массива defaultRows[]; в DOM дерево, в рандомном порядке, в три колонки
