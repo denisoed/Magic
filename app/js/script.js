@@ -187,7 +187,7 @@ function rowIs(btn) {
   play('audio/clickRow.mp3');
   getRow = Number(btn.getAttribute('id')) + 2;
   count2 = 0; // Обнуляем переменную чтобы в функцие replaceNum счетчик count2 при запуске был равен нулю.
-  shuffleTheRows(storeArrays[numberRow1], storeArrays[numberRow2]);// Перебрать ряды в соответствии со свойствами переменных numberRow.
+  shuffleTheRows(storeArrays[numberRow1], storeArrays[numberRow2]); // Перебрать ряды в соответствии со свойствами переменных numberRow.
   numberRow1 += 1;
   numberRow2 += 1;
   clear(); // После того как выбрали ряд удаляем все числа
@@ -254,32 +254,18 @@ function getResult(e) {
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////Start_modal_window//////////////////////////
 //////////////////////////////////////////////////////////////////////////
-
-let sayHello = [
-  "Хеллоу Амиго",
-  "ПривЭт умник!",
-  "Саламчик!",
-  "Здорова морда!",
-  "Дратути!",
-  "Даров, отверстие!",
-  "Ку-ку ёпта)!"
-];
-
 let sayPhrase = [
   "Жми на тот ряд где находится твоя выбранная иконка!",
   "Ещё разок?",
   "Ну ты знаешь правило!? Как выбрал, жми на лампочку!"
 ];
 
-let hello = document.getElementById('sayHello');
 let start_modal_window = document.getElementById('start_modal_window');
 let btn_continue = document.getElementById('btn_continue');
 let dontClick = document.getElementById('dontClick');
-////////////////
-hello.innerHTML = sayHello[rN(0,6)];
 
 btn_continue.addEventListener('click', function(){
-  changeCss(start_modal_window, 'left', '-100%');
+  changeCss(start_modal_window, 'left', '100%');
   showNumbers(defaultRows);
   changeAttribute(rowsContainer, 'setAttribute', 'displayFlex');
 });
