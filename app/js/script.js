@@ -1,5 +1,5 @@
 // Имеется три колонки, в которых по очередно присвоены цифры.
-var data = [
+let data = [
   'bomb',
   'bluetooth',
   'book',
@@ -67,29 +67,29 @@ var data = [
   'music'
 ];
 
-var defaultRows = [];
+let defaultRows = [];
 
 // Пустой двумерный массив для перебора в определенном порядке массива defaultRows[];
-var temporatyArray1 = [
+let temporatyArray1 = [
   [],
   [],
   []
 ];
 // Пустой двумерный массив для перебора в определенном порядке массива temporatyArray[];
-var temporatyArray2 = [
+let temporatyArray2 = [
   [],
   [],
   []
 ];
 // Пустой двумерный массив который хранит результативный набор чисел.
-var resultArray = [
+let resultArray = [
   [],
   [],
   []
 ];
 
 // Общее хранилище рабочих двумерных массивов, предназначено для обращения к ним по индексу
-var storeArrays = [defaultRows, temporatyArray1, temporatyArray2, resultArray];
+let storeArrays = [defaultRows, temporatyArray1, temporatyArray2, resultArray];
 
 // Необходимые переменные
 let remainder = 0, // Счетчик для функции getRemainder();
@@ -98,7 +98,7 @@ let remainder = 0, // Счетчик для функции getRemainder();
     count4 = 0, // Переменная для функции replaceNum();
     clickBtnRow = 0, // Считает нажатие по кнопке выбора ряда
     numberRow1 = 0, // Счетчики для перебора массива storeArrays[];
-    numberRow2 = 1; //
+    numberRow2 = 1;
 
 /*
 Эта  функция обрабатывается в цикле и возвращает
@@ -196,7 +196,7 @@ function rowIs(btn) {
 // Очищает все числа в DOM дереве, для следующего вывода чисел
 function clear() {
   const ull = rowsContainer.getElementsByTagName('ul');
-  for (var i = 0; i < ull.length; i++) {
+  for (let i = 0; i < ull.length; i++) {
     ull[i].remove();
   }
 }
@@ -208,9 +208,9 @@ function clear() {
 в определенном порядке.
 */
 function shuffleTheRows(fullArray, emptyArray) {
-  for (var i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 3; i++) {
 
-    for (var j = 0; j < 21; j++) {
+    for (let j = 0; j < 21; j++) {
       replaceNum();
       emptyArray[getRemainder(remainder)][count4] = fullArray[getRemainder(getRow)][j];
       remainder += 1;
@@ -224,15 +224,17 @@ function shuffleTheRows(fullArray, emptyArray) {
   showNumbers(emptyArray); // Вывод на экран после перебора
 }
 
-//4).Вывод загаданого числа
-rowsContainer.addEventListener('click', result);
+/*4).РЕЗУЛЬТАТ
+Вывод результата на экран
+*/
+rowsContainer.addEventListener('click', getResult);
 
-var resNum;
-var h4Num;
+let resNum;
+let h4Num;
 
-function result(e) {
+function getResult(e) {
   if (clickBtnRow == 3) {
-    for (var i = 0; i < classRow.length; i++) {
+    for (let i = 0; i < classRow.length; i++) {
       classRow[i].classList.add('displayNone');
     }
 
@@ -241,7 +243,7 @@ function result(e) {
     numberRow2 = 1;
     createNode(resNum, 'div', 'id', 'resultNumber', h4Num, 'h4', storeArrays[3][+e.target.getAttribute('id')][10], rowsContainer);
     pasteText(h2, sayPhrase[1]);
-    play('audio/Злойсмех.mp3');
+    play('audio/laugh.mp3');
     changeAttribute(lampImg2, 'removeAttribute', 'animated swing');
     return clickBtnRow = 0;
   }
@@ -253,7 +255,7 @@ function result(e) {
 /////////////////////////////Start_modal_window//////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-var sayHello = [
+let sayHello = [
   "Хеллоу Амиго",
   "ПривЭт умник!",
   "Саламчик!",
@@ -263,16 +265,16 @@ var sayHello = [
   "Ку-ку ёпта)!"
 ];
 
-var sayPhrase = [
+let sayPhrase = [
   "Жми на тот ряд где находится твоя выбранная иконка!",
   "Ещё разок?",
   "Ну ты знаешь правило!? Как выбрал, жми на лампочку!"
 ];
 
-var hello = document.getElementById('sayHello');
-var start_modal_window = document.getElementById('start_modal_window');
-var btn_continue = document.getElementById('btn_continue');
-var dontClick = document.getElementById('dontClick');
+let hello = document.getElementById('sayHello');
+let start_modal_window = document.getElementById('start_modal_window');
+let btn_continue = document.getElementById('btn_continue');
+let dontClick = document.getElementById('dontClick');
 ////////////////
 hello.innerHTML = sayHello[rN(0,6)];
 
@@ -285,14 +287,14 @@ btn_continue.addEventListener('click', function(){
 ///////////////////////////////////////////////////////
 ////////////////////Главная область///////////////////
 /////////////////////////////////////////////////////
-var h2 = document.getElementById('h2');
-var rightBlock = document.getElementById('right');
-var arrowUp = document.getElementById('arrowUp');
-var leftBlock = document.getElementById('left');
-var lampImg1 = document.getElementById('img');
-var lampImg2 = document.getElementById('img2');
-var btnReady = document.getElementById('ready');
-var btnRepeat = document.getElementById('repeat');
+let h2 = document.getElementById('h2');
+let rightBlock = document.getElementById('right');
+let arrowUp = document.getElementById('arrowUp');
+let leftBlock = document.getElementById('left');
+let lampImg1 = document.getElementById('img');
+let lampImg2 = document.getElementById('img2');
+let btnReady = document.getElementById('ready');
+let btnRepeat = document.getElementById('repeat');
 
 btnReady.addEventListener('click', function(){
   changeCss(rightBlock, 'backgroundImage', 'url(img/troll.png)');
@@ -309,7 +311,7 @@ btnReady.addEventListener('click', function(){
 
 btnRepeat.addEventListener('click', function(){
 
-  for (var i = 0; i < classRow.length; i++) {
+  for (let i = 0; i < classRow.length; i++) {
     classRow[i].classList.remove('displayNone');
   }
 
@@ -343,26 +345,26 @@ function changeAttribute(node, act, className){
 }
 
 function play(mp3){
-  var audio = new Audio(mp3);
+  let audio = new Audio(mp3);
   audio.play();
 }
 
 function restart() {
-  var allUl = rowsContainer.getElementsByTagName('UL');
+  let allUl = rowsContainer.getElementsByTagName('UL');
 
-  for (var i = 0; i < classRow.length; i++) {
+  for (let i = 0; i < classRow.length; i++) {
     classRow[i].removeChild(allUl[0]);
   }
 
 }
 
 function delResult() {
-  var resultNumber = document.getElementById('resultNumber');
+  let resultNumber = document.getElementById('resultNumber');
   resultNumber.remove();
 }
 
 function rN(min, max) {
-  var rundomNumber = Math.floor(Math.random() * (max - min + 1)) + min; //создадим случайное число
+  let rundomNumber = Math.floor(Math.random() * (max - min + 1)) + min; //создадим случайное число
   return rundomNumber;
 }
 
