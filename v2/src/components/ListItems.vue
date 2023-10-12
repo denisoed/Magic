@@ -8,14 +8,23 @@
         class="mdi"
       />
     </button>
+    <div class="list-items_image">
+      <MouseParallax :shift="5">
+        <img alt="Start Face" src="@/assets/img/face.png" />
+      </MouseParallax>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import MouseParallax from "@/components/MouseParallax.vue";
 
 export default defineComponent({
   name: "ListItems",
+  components: {
+    MouseParallax,
+  },
   props: {
     cols: {
       type: Array,
@@ -42,6 +51,8 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 
   &:hover {
     button {
@@ -54,14 +65,15 @@ export default defineComponent({
   button {
     display: flex;
     flex-direction: column;
-    background: #000;
     border: none;
     padding: 0 10vw;
-    transition: transform 0.2s ease;
+    z-index: 2;
+    transition: all 0.2s ease;
 
     i {
       font-size: 1.2rem;
       color: #fff;
+      transition: all 0.2s ease;
     }
 
     &:hover {
@@ -70,6 +82,20 @@ export default defineComponent({
       i {
         opacity: 1;
       }
+    }
+  }
+
+  &_image {
+    width: 40vw;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.05;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    img {
+      transform: scaleX(-1);
     }
   }
 }
