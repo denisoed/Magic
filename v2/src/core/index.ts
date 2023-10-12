@@ -75,6 +75,7 @@ const useMagic = () => {
   function reset() {
     selectedCol.value = 0;
     step.value = 0;
+    result.value = null;
   }
 
   function init() {
@@ -86,7 +87,6 @@ const useMagic = () => {
   watch(step, (val) => {
     if (val === 4) {
       result.value = storeArrays.value[3][selectedCol.value][10];
-      reset();
     }
   });
 

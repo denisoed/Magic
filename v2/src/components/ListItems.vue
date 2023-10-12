@@ -42,17 +42,34 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20vw;
+
+  &:hover {
+    button {
+      i {
+        opacity: 0.8;
+      }
+    }
+  }
 
   button {
     display: flex;
     flex-direction: column;
     background: #000;
     border: none;
+    padding: 0 10vw;
+    transition: transform 0.2s ease;
 
     i {
       font-size: 1.2rem;
       color: #fff;
+    }
+
+    &:hover {
+      transform: scale(1.01);
+
+      i {
+        opacity: 1;
+      }
     }
   }
 }

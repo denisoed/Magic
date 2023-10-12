@@ -1,10 +1,15 @@
 <template>
   <div class="home">
-    <img alt="Start Face" src="@/assets/img/face.png" />
+    <MouseParallax :shift="5">
+      <img alt="Start Face" src="@/assets/img/face.png" />
+    </MouseParallax>
     <div class="home_info">
       <div class="home_info-text">
         <h1>Хеллоу Амиго</h1>
-        <p>Хочешь покажу магию?</p>
+        <p class="text-xl opacity-90">Хочешь покажу магию?</p>
+        <p class="text-md mt-1 opacity-50">
+          Отгадаю то, что ты загадал в уме <i class="mdi mdi-brain text-xl" />
+        </p>
       </div>
       <router-link to="/magic">Покажи ></router-link>
     </div>
@@ -13,9 +18,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import MouseParallax from "@/components/MouseParallax.vue";
 
 export default defineComponent({
   name: "HomeView",
+  components: {
+    MouseParallax,
+  },
 });
 </script>
 
@@ -42,7 +51,6 @@ export default defineComponent({
 
   p {
     color: #fff;
-    font-size: 20px;
     font-weight: 600;
     font-family: "ComfortaaRegular";
   }

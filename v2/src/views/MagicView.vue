@@ -1,7 +1,8 @@
 <template>
   <div class="magic">
     <StepOne @on-next="toStep2" />
-    <ListItems :cols="cols" @on-select="onSelectCol" />
+    <ResultComp v-if="result" :result="result" />
+    <ListItems v-else :cols="cols" @on-select="onSelectCol" />
   </div>
 </template>
 
@@ -10,6 +11,7 @@ import { defineComponent, ref, onBeforeMount } from "vue";
 import useMagic from "@/core";
 
 import StepOne from "@/components/StepOne.vue";
+import ResultComp from "@/components/ResultComp.vue";
 import ListItems from "@/components/ListItems.vue";
 
 enum STEPS {
@@ -21,10 +23,11 @@ export default defineComponent({
   name: "MagicView",
   components: {
     StepOne,
+    ResultComp,
     ListItems,
   },
   setup() {
-    const { init, cols, setCol } = useMagic();
+    const { init, cols, setCol, result } = useMagic();
 
     const step = ref<number>(STEPS.step1);
 
@@ -44,6 +47,7 @@ export default defineComponent({
       cols,
       toStep2,
       onSelectCol,
+      result,
     };
   },
 });
