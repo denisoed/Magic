@@ -8,7 +8,7 @@ const useMagic = () => {
   const cols = ref<string[][]>([]);
   const selectedCol = ref<number>(0);
   const step = ref<number>(0);
-
+  const result = ref<string | null>(null);
   const storeArrays = ref<string[][][]>([
     [[], [], []],
     [[], [], []],
@@ -30,7 +30,22 @@ const useMagic = () => {
     return result;
   }
 
-  function mixCols(fullArray: string[][], emptyArray: string[][]) {
+  function _generateStartCols() {
+    const randomNumbers = _numRandom(0, 62);
+    const columns: string[][] = [];
+
+    for (let i = 0; i < COLS_COUNT; i++) {
+      columns.push([]);
+      for (let j = 0; j < COL_ITEMS_COUNT; j++) {
+        columns[i].push(ICONS[randomNumbers[j]]);
+      }
+      randomNumbers.splice(0, COL_ITEMS_COUNT);
+    }
+
+    return columns;
+  }
+
+  function _mixCols(fullArray: string[][], emptyArray: string[][]) {
     let counter1 = 0;
     let counter2 = 0;
     for (let i = 1; i <= COLS_COUNT; i++) {
@@ -46,39 +61,41 @@ const useMagic = () => {
     cols.value = emptyArray;
   }
 
-  function selectCol(colNum: number) {
+  function setCol(colNum: number) {
     selectedCol.value = colNum;
     if (step.value <= 2) {
-      mixCols(storeArrays.value[step.value], storeArrays.value[step.value + 1]);
+      _mixCols(
+        storeArrays.value[step.value],
+        storeArrays.value[step.value + 1]
+      );
     }
     step.value += 1;
   }
 
+  function reset() {
+    selectedCol.value = 0;
+    step.value = 0;
+  }
+
   function init() {
-    const randomNumbers = _numRandom(0, 62);
-
-    for (let i = 0; i < COLS_COUNT; i++) {
-      cols.value.push([]);
-      for (let j = 0; j < COL_ITEMS_COUNT; j++) {
-        cols.value[i].push(ICONS[randomNumbers[j]]);
-      }
-      randomNumbers.splice(0, COL_ITEMS_COUNT);
-    }
-
-    storeArrays.value[0] = cols.value;
+    const columns = _generateStartCols();
+    cols.value = columns;
+    storeArrays.value[0] = columns;
   }
 
   watch(step, (val) => {
     if (val === 4) {
-      console.log(storeArrays.value[3][selectedCol.value][10]);
-      step.value = 0;
+      result.value = storeArrays.value[3][selectedCol.value][10];
+      reset();
     }
   });
 
   return {
-    init,
     cols,
-    selectCol,
+    result,
+    init,
+    reset,
+    setCol,
   };
 };
 

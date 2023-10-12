@@ -24,7 +24,7 @@ export default defineComponent({
     ListItems,
   },
   setup() {
-    const { init, cols, selectCol } = useMagic();
+    const { init, cols, setCol } = useMagic();
 
     const step = ref<number>(STEPS.step1);
 
@@ -33,7 +33,7 @@ export default defineComponent({
     }
 
     function onSelectCol(col: number) {
-      selectCol(col);
+      setCol(col);
     }
 
     onBeforeMount(() => {
