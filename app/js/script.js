@@ -1,4 +1,4 @@
-// Имеется три колонки, в которых по очередно присвоены цифры.
+// Имеется три колонки со списком иконок.
 let data = [
   'bomb',
   'bluetooth',
@@ -118,7 +118,7 @@ function getRemainder(num) {
 3.(4,5,5,5,6,6,6);
 */
 function replaceNum() {
-  count4 = Math.floor(count2/3);
+  count4 = Math.floor(count2 / 3);
   count2 += 1;
 }
 
@@ -150,7 +150,7 @@ const rowsContainer = document.getElementById('rows');
 const classRow = rowsContainer.getElementsByClassName('row');
 
 function showNumbers(array) {
-  const arr = numRandom(0,20);
+  const arr = numRandom(0, 20);
 
   for (let i = 0; i < 3; i++) {
     let ul = document.createElement('ul');
@@ -216,7 +216,6 @@ function shuffleTheRows(fullArray, emptyArray) {
       remainder += 1;
     }
 
-    remainder = 0;
     remainder = i;
     getRow += 1;
   }
@@ -255,9 +254,9 @@ function getResult(e) {
 /////////////////////////////Start_modal_window//////////////////////////
 //////////////////////////////////////////////////////////////////////////
 let sayPhrase = [
-  "Жми на тот ряд где находится твоя выбранная иконка!",
+  "Жми на тот ряд где находится твоя выбранная иконка",
   "Ещё разок?",
-  "Ну ты знаешь правило!? Как выбрал, жми на лампочку!"
+  "Ну ты знаешь правила: как запомнил иконку, жми на лампочку"
 ];
 
 let start_modal_window = document.getElementById('start_modal_window');
@@ -350,7 +349,7 @@ function delResult() {
 }
 
 function rN(min, max) {
-  let rundomNumber = Math.floor(Math.random() * (max - min + 1)) + min; //создадим случайное число
+  let rundomNumber = Math.floor(Math.random() * (max - min + 1)) + min; // создадим случайное число
   return rundomNumber;
 }
 

@@ -1,0 +1,85 @@
+*::-webkit-input-placeholder {
+  color: #666;
+  opacity: 1;
+}
+*:-moz-placeholder {
+  color: #666;
+  opacity: 1;
+}
+*::-moz-placeholder {
+  color: #666;
+  opacity: 1;
+}
+*:-ms-input-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+@font-face {
+  font-family: RubikMonoOneRegular;
+  font-style: normal;
+  src: url(@/assets/fonts/RubikMonoOneRegular.ttf) format("truetype")
+}
+
+@font-face {
+  font-family: RobotoRegular;
+  font-style: normal;
+  src: url(@/assets/fonts/RobotoRegular/RobotoRegular.ttf) format("truetype")
+}
+
+@font-face {
+  font-family: RobotoBold;
+  font-style: normal;
+  src: url(@/assets/fonts/RobotoBold/RobotoBold.ttf) format("truetype")
+}
+
+@font-face {
+  font-family: ComfortaaRegular;
+  font-style: normal;
+  src: url(@/assets/fonts/ComfortaaRegular.ttf) format("truetype")
+}
+
+* {
+  font-family: "RubikMonoOneRegular", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+  color: #666;
+}
+body input:required:valid,
+body textarea:required:valid {
+  color: #666;
+}
+body {
+  font-size: 16px;
+  min-width: 320px;
+  position: relative;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
