@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@/assets/sass/base.scss";
+@import url("@mdi/font/css/materialdesignicons.css");

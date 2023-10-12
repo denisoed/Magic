@@ -1,27 +1,7 @@
 <template>
   <div class="magic">
-    <div class="magic_left">
-      <button v-if="started" @click="reset" class="magic_left-lamp">
-        <img alt="Lamp" src="@/assets/img/lamp2.jpg" />
-      </button>
-      <button v-else @click="setStart" class="magic_left-lamp">
-        <img alt="Lamp" src="@/assets/img/lamp1.jpg" />
-      </button>
-      <p>Видишь справа иконки?</p>
-      <p>Запомни любую из них</p>
-      <p>Запомнил?</p>
-      <p>Жми на лампочку</p>
-    </div>
-    <div class="magic_right">
-      <button v-for="(col, i) of cols" :key="`col-${i}`">
-        <i
-          v-for="(item, j) of col"
-          :key="`item-${j}`"
-          :class="item"
-          class="mdi"
-        />
-      </button>
-    </div>
+    <StepOne @on-next="toStep2" />
+    <ListItems :cols="cols" @on-select="onSelectCol" />
   </div>
 </template>
 
@@ -29,19 +9,31 @@
 import { defineComponent, ref, onBeforeMount } from "vue";
 import useMagic from "@/core";
 
+import StepOne from "@/components/StepOne.vue";
+import ListItems from "@/components/ListItems.vue";
+
+enum STEPS {
+  step1 = 1,
+  step2 = 2,
+}
+
 export default defineComponent({
   name: "MagicView",
+  components: {
+    StepOne,
+    ListItems,
+  },
   setup() {
-    const { init, cols } = useMagic();
+    const { init, cols, selectCol } = useMagic();
 
-    const started = ref<boolean>(false);
+    const step = ref<number>(STEPS.step1);
 
-    function setStart() {
-      started.value = true;
+    function toStep2() {
+      step.value = STEPS.step2;
     }
 
-    function reset() {
-      started.value = false;
+    function onSelectCol(col: number) {
+      selectCol(col);
     }
 
     onBeforeMount(() => {
@@ -49,10 +41,9 @@ export default defineComponent({
     });
 
     return {
-      started,
-      setStart,
-      reset,
       cols,
+      toStep2,
+      onSelectCol,
     };
   },
 });
@@ -68,15 +59,6 @@ export default defineComponent({
   background: #000;
   box-sizing: border-box;
 
-  &_left {
-    width: 400px;
-
-    &-lamp {
-      border: none;
-      background: #000;
-    }
-  }
-
   &_right {
     width: 100%;
     height: 100%;
@@ -90,30 +72,12 @@ export default defineComponent({
       flex-direction: column;
       background: #000;
       border: none;
-      gap: 5px;
 
       i {
-        font-size: 22px;
+        font-size: 1.2rem;
         color: #fff;
       }
     }
-  }
-
-  img {
-    width: auto;
-    height: 200px;
-  }
-
-  h1 {
-    font-size: 42px;
-    color: #fff;
-  }
-
-  p {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: "ComfortaaRegular";
   }
 
   &_info {

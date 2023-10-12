@@ -3,9 +3,6 @@
 </template>
 
 <style lang="scss">
-@import "@/assets/sass/base.scss";
-@import url("@mdi/font/css/materialdesignicons.css");
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

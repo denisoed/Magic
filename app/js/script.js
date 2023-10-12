@@ -340,7 +340,6 @@ function restart() {
   for (let i = 0; i < classRow.length; i++) {
     classRow[i].removeChild(allUl[0]);
   }
-
 }
 
 function delResult() {
