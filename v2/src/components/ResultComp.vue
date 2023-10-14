@@ -10,8 +10,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import MouseParallax from "@/components/MouseParallax.vue";
+import { playAudio } from "@/core/helpers";
 
 export default defineComponent({
   name: "ResultComp",
@@ -23,6 +24,11 @@ export default defineComponent({
       type: String,
       default: null,
     },
+  },
+  setup() {
+    onMounted(() => {
+      playAudio("eralash.mp3");
+    });
   },
 });
 </script>

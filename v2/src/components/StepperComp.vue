@@ -16,7 +16,7 @@
       </p>
       <p class="text-black">...и так несколько раз</p>
     </div>
-    <LightSwitcher @enable="setStarted" @disable="unsetStarted" />
+    <LightSwitcher @enable="toggle(true)" @disable="toggle(false)" />
   </div>
 </template>
 
@@ -26,12 +26,12 @@ import { defineComponent, ref, watch } from "vue";
 import LightSwitcher from "@/components/LightSwitcher.vue";
 
 export default defineComponent({
-  name: "StepOne",
+  name: "StepperComp",
   components: {
     LightSwitcher,
   },
-  emits: ["on-next"],
-  setup() {
+  emits: ["toggle"],
+  setup(_, { emit }) {
     const btnRef = ref();
     const started = ref(false);
 
@@ -43,14 +43,10 @@ export default defineComponent({
       btnRef.value.classList.remove("animated", "swing");
     }
 
-    function setStarted() {
-      started.value = true;
+    function toggle(bool: boolean) {
+      started.value = bool;
       setAnim();
-    }
-
-    function unsetStarted() {
-      started.value = false;
-      setAnim();
+      emit("toggle", !bool);
     }
 
     watch(started, () => {
@@ -62,8 +58,7 @@ export default defineComponent({
     return {
       btnRef,
       started,
-      setStarted,
-      unsetStarted,
+      toggle,
     };
   },
 });

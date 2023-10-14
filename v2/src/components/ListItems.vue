@@ -35,7 +35,7 @@ export default defineComponent({
   emits: ["on-select"],
   setup(_, { emit }) {
     function onSelect(index: number) {
-      playAudio("/src/assets/audio/clickCol.mp3");
+      playAudio("clickCol.mp3");
       emit("on-select", index);
     }
 

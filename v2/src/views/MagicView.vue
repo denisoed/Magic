@@ -1,61 +1,54 @@
 <template>
   <div class="magic">
-    <StepOne v-if="step === STEPS.step1" @on-next="toStep2" />
-    <template v-if="step === STEPS.step2">
-      <StepFinal v-if="result" @on-prev="reset" />
-      <StepTwo v-else @on-prev="toStep1" />
-    </template>
+    <StepperComp @toggle="toggleLock" />
     <ResultComp v-if="result" :result="result" />
     <ListItems
       v-else
       :cols="cols"
       @on-select="onSelectCol"
-      :class="{ 'pointer-events-none': step === STEPS.step1 }"
+      :class="{ 'pointer-events-none': isLocked }"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onBeforeMount } from "vue";
+import { defineComponent, ref, onBeforeMount, watch } from "vue";
 import useMagic from "@/core";
 
-import StepOne from "@/components/StepOne.vue";
-import StepTwo from "@/components/StepTwo.vue";
-import StepFinal from "@/components/StepFinal.vue";
+import StepperComp from "@/components/StepperComp.vue";
 import ResultComp from "@/components/ResultComp.vue";
 import ListItems from "@/components/ListItems.vue";
-
-enum STEPS {
-  step1 = 1,
-  step2 = 2,
-}
 
 export default defineComponent({
   name: "MagicView",
   components: {
-    StepOne,
-    StepTwo,
-    StepFinal,
+    StepperComp,
     ResultComp,
     ListItems,
   },
   setup() {
     const { init, cols, setCol, result, reset } = useMagic();
 
-    const step = ref<number>(STEPS.step1);
+    const isLocked = ref(true);
 
-    function toStep1() {
-      reset();
-      step.value = STEPS.step1;
-    }
-
-    function toStep2() {
-      step.value = STEPS.step2;
+    function toggleLock(locked: boolean) {
+      if (!isLocked.value) {
+        reset();
+      }
+      isLocked.value = locked;
     }
 
     function onSelectCol(col: number) {
       setCol(col);
     }
+
+    watch(result, (r) => {
+      if (r) {
+        setTimeout(() => {
+          reset();
+        }, 3000);
+      }
+    });
 
     onBeforeMount(() => {
       init();
@@ -63,13 +56,11 @@ export default defineComponent({
 
     return {
       cols,
-      toStep1,
-      toStep2,
+      isLocked,
+      toggleLock,
       onSelectCol,
       reset,
       result,
-      step,
-      STEPS,
     };
   },
 });
