@@ -60,6 +60,21 @@ const useMagic = () => {
     return columns;
   }
 
+  function _shuffleCol(array: TMatrixCol) {
+    const newArray = array.map((subArray) => {
+      const shuffledSubArray = [...subArray];
+      for (let i = shuffledSubArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledSubArray[i], shuffledSubArray[j]] = [
+          shuffledSubArray[j],
+          shuffledSubArray[i],
+        ];
+      }
+      return shuffledSubArray;
+    });
+    return newArray;
+  }
+
   function _mixCols(fullArray: TMatrixCol, newArray: TMatrixCol) {
     let counter1 = 0;
     let counter2 = 0;
@@ -79,10 +94,11 @@ const useMagic = () => {
   function setCol(colNum: number) {
     selectedCol.value = colNum;
     if (step.value <= EnumSteps.step2) {
-      cols.value = _mixCols(
+      const mixedCols = _mixCols(
         storeArrays.value[step.value],
         storeArrays.value[step.value + 1]
       );
+      cols.value = _shuffleCol(mixedCols);
     }
     step.value += 1;
   }

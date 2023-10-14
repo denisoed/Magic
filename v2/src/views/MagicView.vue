@@ -75,40 +75,5 @@ export default defineComponent({
   justify-content: flex-start;
   background: #000;
   box-sizing: border-box;
-
-  &_right {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20vw;
-
-    button {
-      display: flex;
-      flex-direction: column;
-      background: #000;
-      border: none;
-
-      i {
-        font-size: 1.2rem;
-        color: #fff;
-      }
-    }
-  }
-
-  &_info {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    &-text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-  }
 }
 </style>
