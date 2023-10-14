@@ -1,8 +1,14 @@
 <template>
   <div class="magic">
-    <StepOne @on-next="toStep2" />
+    <StepOne v-if="step === STEPS.step1" @on-next="toStep2" />
+    <StepTwo v-else-if="step === STEPS.step2" @on-prev="toStep1" />
     <ResultComp v-if="result" :result="result" />
-    <ListItems v-else :cols="cols" @on-select="onSelectCol" />
+    <ListItems
+      v-else
+      :cols="cols"
+      @on-select="onSelectCol"
+      :class="{ 'pointer-events-none': step === STEPS.step1 }"
+    />
   </div>
 </template>
 
@@ -11,6 +17,7 @@ import { defineComponent, ref, onBeforeMount } from "vue";
 import useMagic from "@/core";
 
 import StepOne from "@/components/StepOne.vue";
+import StepTwo from "@/components/StepTwo.vue";
 import ResultComp from "@/components/ResultComp.vue";
 import ListItems from "@/components/ListItems.vue";
 
@@ -23,13 +30,19 @@ export default defineComponent({
   name: "MagicView",
   components: {
     StepOne,
+    StepTwo,
     ResultComp,
     ListItems,
   },
   setup() {
-    const { init, cols, setCol, result } = useMagic();
+    const { init, cols, setCol, result, reset } = useMagic();
 
     const step = ref<number>(STEPS.step1);
+
+    function toStep1() {
+      reset();
+      step.value = STEPS.step1;
+    }
 
     function toStep2() {
       step.value = STEPS.step2;
@@ -45,9 +58,12 @@ export default defineComponent({
 
     return {
       cols,
+      toStep1,
       toStep2,
       onSelectCol,
       result,
+      step,
+      STEPS,
     };
   },
 });

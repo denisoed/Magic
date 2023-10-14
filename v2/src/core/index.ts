@@ -1,20 +1,31 @@
 import { ref, watch } from "vue";
 import ICONS from "@/core/icons";
 
+type TMatrix = string[][][];
+type TMatrixCol = string[][];
+
+enum EnumSteps {
+  step0 = 0,
+  step1 = 1,
+  step2 = 2,
+  stepFinal = 4,
+}
+
 const COLS_COUNT = 3;
 const COL_ITEMS_COUNT = 21;
+const INIT_MATRIX: TMatrix = [
+  [[], [], []],
+  [[], [], []],
+  [[], [], []],
+  [[], [], []],
+];
 
 const useMagic = () => {
-  const cols = ref<string[][]>([]);
+  const cols = ref<TMatrixCol>([]);
   const selectedCol = ref<number>(0);
-  const step = ref<number>(0);
+  const step = ref<EnumSteps>(EnumSteps.step0);
   const result = ref<string | null>(null);
-  const storeArrays = ref<string[][][]>([
-    [[], [], []],
-    [[], [], []],
-    [[], [], []],
-    [[], [], []],
-  ]);
+  const storeArrays = ref<TMatrix>([...INIT_MATRIX]);
 
   function _numRandom(min: number, max: number) {
     const result: number[] = [];
@@ -30,9 +41,13 @@ const useMagic = () => {
     return result;
   }
 
+  function _getResult(arr: TMatrix, colNum: number) {
+    return arr[3][colNum][10];
+  }
+
   function _generateStartCols() {
     const randomNumbers = _numRandom(0, 62);
-    const columns: string[][] = [];
+    const columns: TMatrixCol = [];
 
     for (let i = 0; i < COLS_COUNT; i++) {
       columns.push([]);
@@ -45,12 +60,12 @@ const useMagic = () => {
     return columns;
   }
 
-  function _mixCols(fullArray: string[][], emptyArray: string[][]) {
+  function _mixCols(fullArray: TMatrixCol, newArray: TMatrixCol) {
     let counter1 = 0;
     let counter2 = 0;
     for (let i = 1; i <= COLS_COUNT; i++) {
       for (let j = 0; j < COL_ITEMS_COUNT; j++) {
-        emptyArray[counter1 % 3][Math.floor(counter2 / 3)] =
+        newArray[counter1 % 3][Math.floor(counter2 / 3)] =
           fullArray[(selectedCol.value + 2) % 3][j];
         counter1 += 1;
         counter2 += 1;
@@ -58,24 +73,18 @@ const useMagic = () => {
       counter1 = i;
       selectedCol.value += 1;
     }
-    cols.value = emptyArray;
+    return newArray;
   }
 
   function setCol(colNum: number) {
     selectedCol.value = colNum;
-    if (step.value <= 2) {
-      _mixCols(
+    if (step.value <= EnumSteps.step2) {
+      cols.value = _mixCols(
         storeArrays.value[step.value],
         storeArrays.value[step.value + 1]
       );
     }
     step.value += 1;
-  }
-
-  function reset() {
-    selectedCol.value = 0;
-    step.value = 0;
-    result.value = null;
   }
 
   function init() {
@@ -84,9 +93,17 @@ const useMagic = () => {
     storeArrays.value[0] = columns;
   }
 
-  watch(step, (val) => {
-    if (val === 4) {
-      result.value = storeArrays.value[3][selectedCol.value][10];
+  function reset() {
+    selectedCol.value = 0;
+    step.value = EnumSteps.step0;
+    result.value = null;
+    storeArrays.value = [...INIT_MATRIX];
+    init();
+  }
+
+  watch(step, (s) => {
+    if (s === EnumSteps.stepFinal) {
+      result.value = _getResult(storeArrays.value, selectedCol.value);
     }
   });
 

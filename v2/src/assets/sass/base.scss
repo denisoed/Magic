@@ -83,3 +83,46 @@ ul {
 button {
   cursor: pointer;
 }
+
+
+// Animations
+
+.animated {
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.swing {
+  animation: swing 1.5s;
+  animation-timing-function: ease-in-out;
+  -webkit-transform-origin: top;
+  -moz-transform-origin: top;
+  transform-origin: top;
+}
+
+@keyframes swing {
+  20% {
+    -webkit-transform: rotate(15deg);
+    transform: rotate(15deg)
+  }
+
+  40% {
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg)
+  }
+
+  60% {
+    -webkit-transform: rotate(5deg);
+    transform: rotate(5deg)
+  }
+
+  80% {
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg)
+  }
+
+  to {
+    -webkit-transform: rotate(0);
+    transform: rotate(0)
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="step-1 px-2">
-    <button @click="onNext" class="mb-10">
+    <button ref="btnRef" @click="onNext" class="mb-10">
       <img alt="Lamp" src="@/assets/img/lamp1.jpg" />
     </button>
     <p>Видишь справа иконки?</p>
@@ -11,19 +11,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-// import { playAudio } from "@/core/helpers";
+import { defineComponent, ref, onMounted } from "vue";
+import { playAudio } from "@/core/helpers";
 
 export default defineComponent({
   name: "StepOne",
   emits: ["on-next"],
   setup(_, { emit }) {
+    const btnRef = ref();
+
     function onNext() {
-      // playAudio("./src/assets/audio/LightSwitch.mp3");
+      playAudio("/src/assets/audio/lightSwitch.mp3");
       emit("on-next");
     }
+
+    onMounted(() => {
+      btnRef.value.classList.add("animated", "swing");
+    });
+
     return {
       onNext,
+      btnRef,
     };
   },
 });
@@ -31,7 +39,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .step-1 {
-  width: 350px;
+  width: 450px;
   height: 100%;
 
   img {

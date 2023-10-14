@@ -20,7 +20,6 @@ export default defineComponent({
 
     function parallax(event: MouseEvent) {
       if (mouseParallax.value) {
-        console.log(mouseParallax.value);
         const position = Number(props.shift || 0);
         const x = (window.innerWidth - event.pageX * position) / 90;
         const y = (window.innerHeight - event.pageY * position) / 90;

@@ -19,6 +19,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MouseParallax from "@/components/MouseParallax.vue";
+import { playAudio } from "@/core/helpers";
 
 export default defineComponent({
   name: "ListItems",
@@ -34,6 +35,7 @@ export default defineComponent({
   emits: ["on-select"],
   setup(_, { emit }) {
     function onSelect(index: number) {
+      playAudio("/src/assets/audio/clickCol.mp3");
       emit("on-select", index);
     }
 
