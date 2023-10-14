@@ -1,7 +1,10 @@
 <template>
   <div class="magic">
     <StepOne v-if="step === STEPS.step1" @on-next="toStep2" />
-    <StepTwo v-else-if="step === STEPS.step2" @on-prev="toStep1" />
+    <template v-if="step === STEPS.step2">
+      <StepFinal v-if="result" @on-prev="reset" />
+      <StepTwo v-else @on-prev="toStep1" />
+    </template>
     <ResultComp v-if="result" :result="result" />
     <ListItems
       v-else
@@ -18,6 +21,7 @@ import useMagic from "@/core";
 
 import StepOne from "@/components/StepOne.vue";
 import StepTwo from "@/components/StepTwo.vue";
+import StepFinal from "@/components/StepFinal.vue";
 import ResultComp from "@/components/ResultComp.vue";
 import ListItems from "@/components/ListItems.vue";
 
@@ -31,6 +35,7 @@ export default defineComponent({
   components: {
     StepOne,
     StepTwo,
+    StepFinal,
     ResultComp,
     ListItems,
   },
@@ -61,6 +66,7 @@ export default defineComponent({
       toStep1,
       toStep2,
       onSelectCol,
+      reset,
       result,
       step,
       STEPS,
